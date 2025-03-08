@@ -30,7 +30,7 @@ A collection of free online tools for developers, designers, and digital profess
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/instantdevtools.git
+   git clone https://github.com/ranjitkumarsah/instantdevtools.git
    ```
 
 2. Navigate to the project directory:
@@ -43,7 +43,7 @@ A collection of free online tools for developers, designers, and digital profess
 
 ## 🌐 Live Demo
 
-Visit [https://yourusername.github.io/instantdevtools](https://yourusername.github.io/instantdevtools)
+Visit [https://ranjitkumarsah.github.io/InstantDevTools](https://ranjitkumarsah.github.io/InstantDevTools)
 
 ## 🤝 Contributing
 
