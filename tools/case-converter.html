@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Case Converter by InstantDevTools - Transform text into UPPERCASE, lowercase, Title Case, and Sentence case instantly.">
+    <meta name="keywords" content="case converter, text case, change text case, text transformer, instantdevtools">
+    <meta name="author" content="InstantDevTools">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Case Converter - InstantDevTools">
+    <meta property="og:description" content="Transform text case instantly with InstantDevTools. UPPERCASE, lowercase, Title Case, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/tools/case-converter">
+    <meta property="og:image" content="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg">
+    
+    <title>Case Converter - InstantDevTools</title>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+    <meta name="theme-color" content="#4A90E2">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebApplication",
+        "name": "Case Converter",
+        "description": "Free online case converter tool for text transformation",
+        "url": "https://your-domain.com/tools/case-converter",
+        "applicationCategory": "Text Tool",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-tools"></i> InstantDevTools
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../tools.html">Tools</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tool Header -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="icon-circle bg-primary bg-opacity-10 mx-auto mb-4" style="width: 64px; height: 64px;">
+                        <i class="fas fa-text-height fa-2x "></i>
+                    </div>
+                    <h1 class="display-4 fw-bold text-white mb-3">Case Converter</h1>
+                    <p class="lead text-white-75 mb-0">Transform your text into any case format instantly. Perfect for writers, developers, and content creators.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tool Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-body p-4">
+                            <!-- Input Section -->
+                            <div class="mb-4">
+                                <label for="inputText" class="form-label h5 mb-3">Enter Your Text</label>
+                                <textarea id="inputText" class="form-control mb-3" rows="6" placeholder="Type or paste your text here..."></textarea>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button class="btn btn-primary" id="upperCase">
+                                        <i class="fas fa-arrow-up me-2"></i>UPPERCASE
+                                    </button>
+                                    <button class="btn btn-primary" id="lowerCase">
+                                        <i class="fas fa-arrow-down me-2"></i>lowercase
+                                    </button>
+                                    <button class="btn btn-primary" id="titleCase">
+                                        <i class="fas fa-font me-2"></i>Title Case
+                                    </button>
+                                    <button class="btn btn-primary" id="sentenceCase">
+                                        <i class="fas fa-paragraph me-2"></i>Sentence case
+                                    </button>
+                                    <button class="btn btn-outline-primary ms-auto" id="clearText">
+                                        <i class="fas fa-eraser me-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Output Section -->
+                            <div>
+                                <label class="form-label h5 mb-3">Result</label>
+                                <div class="position-relative">
+                                    <textarea id="outputText" class="form-control mb-3" rows="6" readonly></textarea>
+                                    <button class="btn btn-primary position-absolute top-0 end-0 m-2" id="copyButton">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="icon-circle mx-auto mb-3">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="h5 mb-2">Instant Conversion</h3>
+                        <p class="text-muted">Transform text case in real-time</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="icon-circle mx-auto mb-3">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h3 class="h5 mb-2">Multiple Formats</h3>
+                        <p class="text-muted">Convert to any case instantly</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="icon-circle mx-auto mb-3">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="h5 mb-2">Mobile Friendly</h3>
+                        <p class="text-muted">Works on all devices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Tools Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold mb-3">Explore Other Tools</h2>
+                <p class="lead text-secondary">Discover more free tools to boost your productivity</p>
+            </div>
+            <div class="row g-4">
+                <!-- Word Counter -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-circle bg-primary bg-opacity-10 me-3">
+                                    <i class="fas fa-font fa-lg"></i>
+                                </div>
+                                <h3 class="h5 mb-0">Word Counter</h3>
+                            </div>
+                            <p class="card-text mb-3">Count words, characters, sentences, and paragraphs in real-time.</p>
+                            <a href="word-counter.html" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-arrow-right me-2"></i>Try Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- QR Code Generator -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-circle bg-accent bg-opacity-10 me-3">
+                                    <i class="fas fa-qrcode fa-lg text-accent"></i>
+                                </div>
+                                <h3 class="h5 mb-0">QR Code Generator</h3>
+                            </div>
+                            <p class="card-text mb-3">Create QR codes instantly for URLs, text, and more.</p>
+                            <a href="qr-generator.html" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-arrow-right me-2"></i>Try Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image to Base64 -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-circle bg-primary bg-opacity-10 me-3">
+                                    <i class="fas fa-image fa-lg"></i>
+                                </div>
+                                <h3 class="h5 mb-0">Image to Base64</h3>
+                            </div>
+                            <p class="card-text mb-3">Convert images to Base64 encoded strings instantly.</p>
+                            <a href="image-to-base64.html" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-arrow-right me-2"></i>Try Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="../tools.html" class="btn btn-primary">
+                    <i class="fas fa-th-large me-2"></i>View All Tools
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 InstantDevTools. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-decoration-none me-3">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-decoration-none me-3">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-decoration-none">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="../assets/js/script.js"></script>
+    <!-- Case Converter JavaScript -->
+    <script>
+        $(document).ready(function() {
+            // Convert to uppercase
+            $('#upperCase').click(function() {
+                const text = $('#inputText').val();
+                $('#outputText').val(text.toUpperCase());
+            });
+
+            // Convert to lowercase
+            $('#lowerCase').click(function() {
+                const text = $('#inputText').val();
+                $('#outputText').val(text.toLowerCase());
+            });
+
+            // Convert to title case
+            $('#titleCase').click(function() {
+                const text = $('#inputText').val();
+                const converted = text.toLowerCase().replace(/(?:^|\s)\w/g, function(match) {
+                    return match.toUpperCase();
+                });
+                $('#outputText').val(converted);
+            });
+
+            // Convert to sentence case
+            $('#sentenceCase').click(function() {
+                const text = $('#inputText').val();
+                const converted = text.toLowerCase().replace(/(^\w|\.\s+\w)/g, function(match) {
+                    return match.toUpperCase();
+                });
+                $('#outputText').val(converted);
+            });
+
+            // Clear text
+            $('#clearText').click(function() {
+                $('#inputText').val('');
+                $('#outputText').val('');
+                $('#inputText').focus();
+            });
+
+            // Copy to clipboard
+            $('#copyButton').click(function() {
+                const outputText = $('#outputText');
+                outputText.select();
+                document.execCommand('copy');
+                
+                // Show feedback
+                const $btn = $(this);
+                const originalHtml = $btn.html();
+                $btn.html('<i class="fas fa-check"></i>');
+                setTimeout(function() {
+                    $btn.html(originalHtml);
+                }, 2000);
+            });
+
+            // Real-time conversion (optional)
+            $('#inputText').on('input', function() {
+                const text = $(this).val();
+                // You can choose which case to use for real-time conversion
+                // For example, using the last selected case
+                $('#outputText').val(text);
+            });
+        });
+    </script>
+</body>
+</html> 

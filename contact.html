@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact InstantDevTools - Get in touch with us for questions, feedback, or support regarding our free online developer tools.">
+    <meta name="keywords" content="contact instantdevtools, developer tools support, online tools contact, feedback">
+    <meta name="author" content="InstantDevTools">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Contact InstantDevTools - Get in Touch">
+    <meta property="og:description" content="Have questions or feedback? Get in touch with the InstantDevTools team.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/contact">
+    <meta property="og:image" content="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg">
+    
+    <title>Contact InstantDevTools - Get in Touch</title>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <meta name="theme-color" content="#4A90E2">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-tools"></i> InstantDevTools
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tools.html">Tools</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Header -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="icon-circle bg-primary bg-opacity-10 mx-auto mb-4" style="width: 64px; height: 64px;">
+                        <i class="fas fa-envelope fa-2x "></i>
+                    </div>
+                    <h1 class="display-4 fw-bold text-white mb-3">Get in Touch</h1>
+                    <p class="lead text-white-75 mb-0">Have questions or feedback? We'd love to hear from you.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Form Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-body p-5">
+                            <form id="contactForm" novalidate>
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name" class="form-label">Name</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light border-0">
+                                                    <i class="fas fa-user text-muted"></i>
+                                                </span>
+                                                <input type="text" class="form-control bg-light border-0" id="name" name="name" placeholder="Enter your full name" required>
+                                            </div>
+                                            <div class="invalid-feedback">Please enter your name.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email" class="form-label">Email</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light border-0">
+                                                    <i class="fas fa-envelope text-muted"></i>
+                                                </span>
+                                                <input type="email" class="form-control bg-light border-0" id="email" name="email" placeholder="your.email@example.com" required>
+                                            </div>
+                                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="subject" class="form-label">Subject</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light border-0">
+                                                    <i class="fas fa-tag text-muted"></i>
+                                                </span>
+                                                <input type="text" class="form-control bg-light border-0" id="subject" name="subject" placeholder="What is your message about?" required>
+                                            </div>
+                                            <div class="invalid-feedback">Please enter a subject.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="message" class="form-label">Message</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light border-0">
+                                                    <i class="fas fa-comment text-muted"></i>
+                                                </span>
+                                                <textarea class="form-control bg-light border-0" id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+                                            </div>
+                                            <div class="invalid-feedback">Please enter your message.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="g-recaptcha mb-4" data-sitekey="6LeKTe4qAAAAAJ_omVfPihN4aGWMvJyJsVxzQvOU
+                                        "></div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary w-100" id="submitButton">
+                                            <span class="submit-text">
+                                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                                            </span>
+                                            <span class="spinner-border spinner-border-sm d-none" role="status"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="icon-circle bg-primary bg-opacity-10 mx-auto mb-4">
+                            <i class="fas fa-clock "></i>
+                        </div>
+                        <h3 class="h5 mb-2">Response Time</h3>
+                        <p class="text-muted">We typically respond within 24 hours</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="icon-circle bg-primary bg-opacity-10 mx-auto mb-4">
+                            <i class="fas fa-question-circle "></i>
+                        </div>
+                        <h3 class="h5 mb-2">Support Hours</h3>
+                        <p class="text-muted">Monday - Friday, 9am - 6pm EST</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="icon-circle bg-primary bg-opacity-10 mx-auto mb-4">
+                            <i class="fas fa-comments "></i>
+                        </div>
+                        <h3 class="h5 mb-2">Social Media</h3>
+                        <p class="text-muted">Follow us for updates and tips</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 InstantDevTools. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-decoration-none me-3">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-decoration-none me-3">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-decoration-none">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center p-4">
+                    <div class="icon-circle bg-success bg-opacity-10 mx-auto mb-4">
+                        <i class="fas fa-check fa-2x text-success"></i>
+                    </div>
+                    <h4 class="mb-3">Message Sent Successfully!</h4>
+                    <p class="text-muted mb-4">Thank you for contacting us. We'll get back to you soon.</p>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center p-4">
+                    <div class="icon-circle bg-danger bg-opacity-10 mx-auto mb-4">
+                        <i class="fas fa-exclamation-triangle fa-2x text-danger"></i>
+                    </div>
+                    <h4 class="mb-3">Oops! Something went wrong</h4>
+                    <p class="text-muted mb-4">Please try again later or contact us through social media.</p>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery Validation Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Contact Form JavaScript -->
+    <script src="assets/js/contact.js"></script>
+
+    <style>
+        .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+        
+        .input-group-text {
+            width: 42px;
+            justify-content: center;
+        }
+        
+        .form-control.is-invalid,
+        .was-validated .form-control:invalid {
+            border-color: var(--bs-danger);
+            background-image: none;
+        }
+        
+        .form-control.is-valid,
+        .was-validated .form-control:valid {
+            border-color: var(--bs-success);
+            background-image: none;
+        }
+    </style>
+</body>
+</html> 

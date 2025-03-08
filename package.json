@@ -1,0 +1,16 @@
+{
+  "name": "devtools-website",
+  "version": "1.0.0",
+  "description": "DevTools - Free Online Developer Tools",
+  "scripts": {
+    "minify:css": "cleancss -o assets/css/styles.min.css assets/css/styles.css",
+    "minify:js": "uglifyjs assets/js/contact.js -o assets/js/contact.min.js",
+    "optimize:images": "imagemin assets/img/* --out-dir=assets/img/optimized",
+    "build": "npm run minify:css && npm run minify:js && npm run optimize:images"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.2",
+    "imagemin-cli": "^7.0.0",
+    "uglify-js": "^3.17.4"
+  }
+} 
