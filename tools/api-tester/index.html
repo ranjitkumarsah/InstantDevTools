@@ -267,6 +267,9 @@
     </style>
 </head>
 <body>
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
         <div class="container">
@@ -382,22 +385,16 @@
                     <div class="card border-0 shadow-sm h-100">
                         <div class="card-header bg-white border-0 py-3">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h3 class="h5 mb-0">Response</h3>
-                                <div id="statusBadge" class="badge status-badge d-none"></div>
+                                <h5 class="mb-0">Response</h5>
+                                <div id="responseStatus"></div>
                             </div>
                         </div>
                         <div class="card-body position-relative">
-                            <div class="mt-4">
-                                <label class="form-label h5 mb-3 d-flex justify-content-between align-items-center">
-                                    Response
-                                    <div id="statusBadge" class="badge status-badge d-none"></div>
-                                </label>
-                                <div class="json-response-wrapper">
-                                    <button class="btn btn-sm copy-btn" id="copyResponse" disabled>
-                                        <i class="fas fa-copy"></i>
-                                    </button>
-                                    <pre class="json-response mb-0" id="jsonResponse">// Response will appear here</pre>
-                                </div>
+                            <div class="json-response-wrapper">
+                                <button class="btn btn-sm copy-btn" id="copyResponse" disabled>
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre class="json-response mb-0" id="responseBody">// Response will appear here</pre>
                             </div>
                         </div>
                     </div>
@@ -572,103 +569,150 @@
                 $(this).closest('.header-row, .param-row').remove();
             });
 
-            // Handle form submission
-            $('#apiForm').submit(function(e) {
+            // Send API Request
+            $('#sendRequestBtn').click(function(e) {
                 e.preventDefault();
+                
+                const method = $('#httpMethod').val();
+                const url = $('#apiUrl').val().trim();
+                
+                if (!url) {
+                    showToast('Please enter a valid API URL', 'error');
+                    return;
+                }
 
                 // Show loading state
-                $('#sendRequest .normal-text').hide();
-                $('#sendRequest .loading-spinner').show();
-                $('#sendRequest').prop('disabled', true);
+                const $btn = $(this);
+                const $btnContent = $btn.find('span');
+                const $spinner = $btn.find('.loading-spinner');
+                
+                $btn.prop('disabled', true);
+                $spinner.show();
+                $btnContent.find('span').hide();
                 $('#copyResponse').prop('disabled', true);
-                $('#statusBadge').addClass('d-none');
 
                 // Collect headers
                 const headers = {};
                 $('.header-row').each(function() {
-                    const key = $(this).find('.header-key').val();
-                    const value = $(this).find('.header-value').val();
+                    const key = $(this).find('.header-key').val().trim();
+                    const value = $(this).find('.header-value').val().trim();
                     if (key && value) {
                         headers[key] = value;
                     }
                 });
 
-                // Prepare request
-                const method = $('#httpMethod').val();
-                const url = $('#apiUrl').val();
+                // Get request body for POST/PUT/PATCH
                 let body = null;
-
-                if (method === 'POST' || method === 'PUT') {
-                    try {
-                        body = JSON.parse($('#requestBody').val() || '{}');
-                    } catch (e) {
-                        alert('Invalid JSON in request body');
-                        resetLoadingState();
-                        return;
+                if (['POST', 'PUT', 'PATCH'].includes(method)) {
+                    const bodyText = $('#requestBody').val().trim();
+                    if (bodyText) {
+                        try {
+                            body = JSON.parse(bodyText);
+                        } catch (e) {
+                            showToast('Invalid JSON in request body', 'error');
+                            resetLoadingState();
+                            return;
+                        }
                     }
                 }
 
-                // Make API call
-                $.ajax({
-                    url: url,
+                // Make the API request
+                fetch(url, {
                     method: method,
-                    headers: headers,
-                    data: body ? JSON.stringify(body) : undefined,
-                    contentType: 'application/json',
-                    success: function(response, status, xhr) {
-                        displayResponse(response, xhr.status);
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...headers
                     },
-                    error: function(xhr) {
-                        try {
-                            const response = JSON.parse(xhr.responseText);
-                            displayResponse(response, xhr.status);
-                        } catch (e) {
-                            displayResponse({ error: xhr.statusText }, xhr.status);
-                        }
-                    },
-                    complete: resetLoadingState
+                    body: body ? JSON.stringify(body) : undefined
+                })
+                .then(response => {
+                    const statusCode = response.status;
+                    const statusClass = 
+                        statusCode >= 200 && statusCode < 300 ? 'status-2xx' :
+                        statusCode >= 300 && statusCode < 400 ? 'status-3xx' :
+                        statusCode >= 400 && statusCode < 500 ? 'status-4xx' :
+                        'status-5xx';
+                    
+                    $('#responseStatus').html(`
+                        <span class="status-badge ${statusClass}">
+                            ${statusCode} ${response.statusText}
+                        </span>
+                    `);
+                    
+                    return response.text();
+                })
+                .then(text => {
+                    try {
+                        // Try to parse as JSON
+                        const json = JSON.parse(text);
+                        $('#responseBody').text(JSON.stringify(json, null, 2));
+                    } catch {
+                        // If not JSON, show as plain text
+                        $('#responseBody').text(text);
+                    }
+                    $('#copyResponse').prop('disabled', false);
+                })
+                .catch(error => {
+                    showToast(error.message, 'error');
+                    $('#responseStatus').html(`
+                        <span class="status-badge status-4xx">
+                            Error
+                        </span>
+                    `);
+                    $('#responseBody').text(error.message);
+                })
+                .finally(() => {
+                    resetLoadingState();
                 });
+
+                function resetLoadingState() {
+                    $btn.prop('disabled', false);
+                    $spinner.hide();
+                    $btnContent.find('span').show();
+                }
             });
+
+            // Show toast message
+            function showToast(message, type = 'info') {
+                const toast = `
+                    <div class="toast align-items-center border-0 ${type === 'error' ? 'bg-danger' : 'bg-primary'} text-white" role="alert">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                ${message}
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                        </div>
+                    </div>
+                `;
+                
+                const $toast = $(toast);
+                $('.toast-container').append($toast);
+                
+                const bsToast = new bootstrap.Toast($toast[0], {
+                    autohide: true,
+                    delay: 3000
+                });
+                
+                bsToast.show();
+                
+                $toast.on('hidden.bs.toast', function() {
+                    $(this).remove();
+                });
+            }
 
             // Copy response
             $('#copyResponse').click(function() {
-                const response = $('#jsonResponse').text();
+                const response = $('#responseBody').text();
                 navigator.clipboard.writeText(response).then(function() {
                     const $btn = $('#copyResponse');
                     $btn.html('<i class="fas fa-check"></i>');
                     setTimeout(() => {
                         $btn.html('<i class="fas fa-copy"></i>');
                     }, 2000);
+                }).catch(function(err) {
+                    showToast('Failed to copy response', 'error');
                 });
             });
-
-            // Helper functions
-            function displayResponse(response, status) {
-                const formattedJson = JSON.stringify(response, null, 4);
-                $('#jsonResponse').text(formattedJson);
-                $('#copyResponse').prop('disabled', false);
-
-                // Show status badge
-                const $badge = $('#statusBadge');
-                $badge.removeClass('d-none status-2xx status-3xx status-4xx status-5xx');
-                $badge.text(`Status: ${status}`);
-
-                if (status >= 200 && status < 300) {
-                    $badge.addClass('status-2xx');
-                } else if (status >= 300 && status < 400) {
-                    $badge.addClass('status-3xx');
-                } else if (status >= 400 && status < 500) {
-                    $badge.addClass('status-4xx');
-                } else {
-                    $badge.addClass('status-5xx');
-                }
-            }
-
-            function resetLoadingState() {
-                $('#sendRequest .normal-text').show();
-                $('#sendRequest .loading-spinner').hide();
-                $('#sendRequest').prop('disabled', false);
-            }
 
             // Initial setup
             $('#httpMethod').trigger('change');
