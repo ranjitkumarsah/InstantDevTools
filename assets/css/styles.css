@@ -324,6 +324,9 @@ footer a:hover {
         width: 100%;
         padding: 0.625rem 1.25rem;
     }
+    #copyButton,#copyResponse {
+        width: unset !important;
+    }
 
     .icon-circle {
         width: 40px;
@@ -582,9 +585,9 @@ body.dark-mode {
         gap: 1rem;
     }
 
-    .btn {
+    /* .btn {
         width: 100%;
-    }
+    } */
 }
 
 /* QR Generator Styles */
