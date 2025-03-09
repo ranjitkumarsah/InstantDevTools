@@ -1,4 +1,4 @@
-# DevTools Website Robots.txt
+# InstantDevTools Website Robots.txt
 User-agent: *
 Allow: /
 Allow: /tools/
@@ -9,4 +9,4 @@ Allow: /contact.html
 Sitemap: https://ranjitkumarsah.github.io/InstantDevTools/sitemap.xml
 
 # Optimize crawling
-Crawl-delay: 1 
+Crawl-delay: 5 
