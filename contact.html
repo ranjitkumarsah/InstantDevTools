@@ -43,6 +43,49 @@
 
     <!-- reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact InstantDevTools",
+        "description": "Get in touch with InstantDevTools for questions, feedback, or support regarding our free online developer tools.",
+        "url": "https://ranjitkumarsah.github.io/InstantDevTools/contact.html",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "InstantDevTools",
+            "url": "https://ranjitkumarsah.github.io/InstantDevTools/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://ranjitkumarsah.github.io/InstantDevTools/assets/favicon/favicon.svg"
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer support",
+                "availableLanguage": "English",
+                "email": "support@instantdevtools.com",
+                "hoursAvailable": "Mo-Fr 09:00-18:00 EST"
+            }
+        },
+        "potentialAction": {
+            "@type": "ContactAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://ranjitkumarsah.github.io/InstantDevTools/contact.html",
+                "inLanguage": "en",
+                "actionPlatform": [
+                    "http://schema.org/DesktopWebPlatform",
+                    "http://schema.org/MobileWebPlatform"
+                ]
+            },
+            "result": {
+                "@type": "Message",
+                "name": "Contact Form Submission"
+            }
+        }
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
