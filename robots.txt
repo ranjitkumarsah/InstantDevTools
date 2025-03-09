@@ -2,8 +2,8 @@
 User-agent: *
 Allow: /
 Allow: /tools/
-Allow: /about.html
-Allow: /contact.html
+Allow: /about/
+Allow: /contact/
 
 # Sitemaps
 Sitemap: https://ranjitkumarsah.github.io/InstantDevTools/sitemap.xml

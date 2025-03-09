@@ -18,12 +18,8 @@
           // Get current URL without query parameters
           let currentURL = window.location.origin + window.location.pathname;
       
-          // Check if the URL ends with "index.html", if yes, keep it; otherwise, remove it
-          if (currentURL.endsWith("/index.html")) {
             canonicalLink.href = currentURL;
-          } else {
-            canonicalLink.href = window.location.origin + "/InstantDevTools/";
-          }
+          
       
           // Append the canonical tag to <head>
           document.head.appendChild(canonicalLink);
@@ -117,10 +113,10 @@
                         <a class="nav-link" href="tools/">Tools</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="contact">Contact</a>
                     </li>
                     
                 </ul>
