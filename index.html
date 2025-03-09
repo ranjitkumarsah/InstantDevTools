@@ -10,7 +10,26 @@
     <meta name="robots" content="index, follow">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://ranjitkumarsah.github.io/InstantDevTools/" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          let canonicalLink = document.createElement("link");
+          canonicalLink.rel = "canonical";
+      
+          // Get current URL without query parameters
+          let currentURL = window.location.origin + window.location.pathname;
+      
+          // Check if the URL ends with "index.html", if yes, keep it; otherwise, remove it
+          if (currentURL.endsWith("/index.html")) {
+            canonicalLink.href = currentURL;
+          } else {
+            canonicalLink.href = window.location.origin + "/InstantDevTools/";
+          }
+      
+          // Append the canonical tag to <head>
+          document.head.appendChild(canonicalLink);
+        });
+      </script>
+      
     
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="InstantDevTools - Professional Web Tools for Developers">
