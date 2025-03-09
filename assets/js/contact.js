@@ -49,7 +49,7 @@ $(document).ready(function() {
             }
         },
         messages: validationMessages,
-        errorElement: 'div',
+        errorElement: 'span',
         errorClass: 'invalid-feedback',
         highlight: function(element) {
             $(element).addClass('is-invalid').removeClass('is-valid');

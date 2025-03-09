@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online API Testing Tool by InstantDevTools. Test REST APIs with support for GET, POST, PUT, DELETE methods. View formatted JSON responses instantly.">
+    <meta name="keywords" content="api tester, rest api tool, api testing, json formatter, postman alternative, online api tool">
+    <meta name="author" content="InstantDevTools">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ranjitkumarsah.github.io/InstantDevTools/tools/api-tester.html" />
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="API Testing Tool - Free Online REST API Tester">
+    <meta property="og:description" content="Test REST APIs instantly with our free online API Testing Tool. Support for all HTTP methods, headers, and request body. View formatted JSON responses.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ranjitkumarsah.github.io/InstantDevTools/tools/api-tester.html">
+    <meta property="og:image" content="https://ranjitkumarsah.github.io/InstantDevTools/assets/favicon/favicon.svg">
+    
+    <title>API Testing Tool - Free Online REST API Tester | InstantDevTools</title>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+    <meta name="theme-color" content="#4A90E2">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebApplication",
+        "name": "API Testing Tool",
+        "description": "Free online API Testing Tool for testing REST APIs with support for GET, POST, PUT, DELETE methods. View formatted JSON responses instantly.",
+        "url": "https://ranjitkumarsah.github.io/InstantDevTools/tools/api-tester.html",
+        "applicationCategory": "DeveloperTool",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "1.0",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InstantDevTools",
+            "url": "https://ranjitkumarsah.github.io/InstantDevTools/"
+        }
+    }
+    </script>
+
+    <style>
+        .json-response-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .json-response {
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            background-color: #1e1e1e;
+            color: #d4d4d4 !important;
+            border-radius: 8px;
+            padding: 1rem;
+            padding-top: 3rem;
+            max-height: 500px;
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        .json-response::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .json-response::-webkit-scrollbar-track {
+            background: #2d2d2d;
+            border-radius: 4px;
+        }
+
+        .json-response::-webkit-scrollbar-thumb {
+            background: #666;
+            border-radius: 4px;
+        }
+
+        .json-response::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+        .method-select {
+            width: 120px !important;
+        }
+
+        .headers-container, .body-container {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .header-row, .param-row {
+            transition: all 0.3s ease;
+        }
+
+        .header-row:hover, .param-row:hover {
+            background-color: rgba(var(--bs-primary-rgb), 0.05);
+        }
+
+        .btn-add-row {
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-add-row:hover {
+            opacity: 1;
+        }
+
+        .status-badge {
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .status-2xx { background-color: #198754; color: white; }
+        .status-3xx { background-color: #0dcaf0; color: white; }
+        .status-4xx { background-color: #dc3545; color: white; }
+        .status-5xx { background-color: #6c757d; color: white; }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            z-index: 10;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            background-color: #2d2d2d;
+            border: 1px solid #3d3d3d;
+            color: #d4d4d4;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            min-width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .copy-btn:hover {
+            background-color: #3d3d3d;
+            border-color: #4d4d4d;
+        }
+
+        .copy-btn:disabled {
+            opacity: 0.5;
+            color: #d4d4d4 !important;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 576px) {
+            .json-response {
+                font-size: 12px;
+                padding-top: 2.5rem;
+            }
+            
+            .copy-btn {
+                top: 0.25rem;
+                right: 0.25rem;
+                padding: 0.2rem 0.4rem;
+                font-size: 0.75rem;
+                min-width: 28px;
+                height: 28px;
+            }
+        }
+
+        .loading-spinner {
+            display: none;
+        }
+
+        .url-input {
+            border-start-start-radius: 0;
+            border-end-start-radius: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-tools"></i> InstantDevTools
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../tools.html">Tools</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tool Header -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="icon-circle bg-primary bg-opacity-10 mx-auto mb-4" style="width: 64px; height: 64px;">
+                        <i class="fas fa-cloud fa-2x"></i>
+                    </div>
+                    <h1 class="display-4 fw-bold text-white mb-3">API Testing Tool</h1>
+                    <p class="lead text-white-75 mb-0">Test REST APIs instantly with support for all HTTP methods. View formatted JSON responses in real-time.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Tool Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Request Panel -->
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-white border-0 py-3">
+                            <h3 class="h5 mb-0">Request</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="apiForm">
+                                <!-- URL Input -->
+                                <div class="mb-4">
+                                    <label class="form-label">API Endpoint</label>
+                                    <div class="input-group">
+                                        <select class="form-select method-select" id="httpMethod">
+                                            <option value="GET">GET</option>
+                                            <option value="POST">POST</option>
+                                            <option value="PUT">PUT</option>
+                                            <option value="DELETE">DELETE</option>
+                                        </select>
+                                        <input type="url" class="form-control url-input" id="apiUrl" placeholder="https://api.example.com/endpoint" required>
+                                    </div>
+                                </div>
+
+                                <!-- Headers -->
+                                <div class="mb-4">
+                                    <label class="form-label d-flex justify-content-between align-items-center">
+                                        Headers
+                                        <button type="button" class="btn btn-sm btn-outline-primary btn-add-row" id="addHeader">
+                                            <i class="fas fa-plus"></i> Add Header
+                                        </button>
+                                    </label>
+                                    <div class="headers-container">
+                                        <div id="headersContainer">
+                                            <!-- Headers will be added here -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Request Body -->
+                                <div class="mb-4" id="requestBodySection">
+                                    <label class="form-label">Request Body (JSON)</label>
+                                    <textarea class="form-control font-monospace" id="requestBody" rows="6" placeholder='{\n    "key": "value"\n}'></textarea>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn btn-primary w-100" id="sendRequest">
+                                    <span class="normal-text">
+                                        <i class="fas fa-paper-plane me-2"></i>Send Request
+                                    </span>
+                                    <span class="loading-spinner">
+                                        <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                        Sending...
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Response Panel -->
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-white border-0 py-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 class="h5 mb-0">Response</h3>
+                                <div id="statusBadge" class="badge status-badge d-none"></div>
+                            </div>
+                        </div>
+                        <div class="card-body position-relative">
+                            <div class="mt-4">
+                                <label class="form-label h5 mb-3 d-flex justify-content-between align-items-center">
+                                    Response
+                                    <div id="statusBadge" class="badge status-badge d-none"></div>
+                                </label>
+                                <div class="json-response-wrapper">
+                                    <button class="btn btn-sm copy-btn" id="copyResponse" disabled>
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                    <pre class="json-response mb-0" id="jsonResponse">// Response will appear here</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="icon-circle mx-auto mb-3">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="h5 mb-2">Fast & Reliable</h3>
+                        <p class="text-muted">Test APIs instantly without any delay</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="icon-circle mx-auto mb-3">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 class="h5 mb-2">Secure Testing</h3>
+                        <p class="text-muted">Your API calls are private and secure</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="icon-circle mx-auto mb-3">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="h5 mb-2">Beautiful Format</h3>
+                        <p class="text-muted">View responses in formatted JSON</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Other Tools Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold mb-3">Explore Other Tools</h2>
+                <p class="lead text-secondary">Discover more free tools to boost your productivity</p>
+            </div>
+            <div class="row g-4">
+                <!-- QR Code Generator -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-circle bg-accent bg-opacity-10 me-3">
+                                    <i class="fas fa-qrcode fa-lg text-accent"></i>
+                                </div>
+                                <h3 class="h5 mb-0">QR Code Generator</h3>
+                            </div>
+                            <p class="card-text mb-3">Create QR codes instantly for URLs, text, and more. Perfect for businesses and personal use.</p>
+                            <a href="qr-generator.html" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-arrow-right me-2"></i>Try Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image to Base64 -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-circle bg-accent bg-opacity-10 me-3">
+                                    <i class="fas fa-image fa-lg text-accent"></i>
+                                </div>
+                                <h3 class="h5 mb-0">Image to Base64</h3>
+                            </div>
+                            <p class="card-text mb-3">Convert images to Base64 encoded strings instantly. Perfect for web developers and designers.</p>
+                            <a href="image-to-base64.html" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-arrow-right me-2"></i>Try Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Word Counter -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-circle bg-primary bg-opacity-10 me-3">
+                                    <i class="fas fa-font fa-lg"></i>
+                                </div>
+                                <h3 class="h5 mb-0">Word Counter</h3>
+                            </div>
+                            <p class="card-text mb-3">Count words, characters, sentences, and paragraphs in real-time.</p>
+                            <a href="word-counter.html" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-arrow-right me-2"></i>Try Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer class="py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 InstantDevTools. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-decoration-none me-3">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-decoration-none me-3">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-decoration-none">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        $(document).ready(function() {
+            // Toggle request body based on HTTP method
+            $('#httpMethod').change(function() {
+                const method = $(this).val();
+                if (method === 'GET' || method === 'DELETE') {
+                    $('#requestBodySection').hide();
+                } else {
+                    $('#requestBodySection').show();
+                }
+            });
+
+            // Add header row
+            $('#addHeader').click(function() {
+                const headerRow = `
+                    <div class="header-row mb-2 d-flex gap-2">
+                        <input type="text" class="form-control form-control-sm header-key" placeholder="Header name">
+                        <input type="text" class="form-control form-control-sm header-value" placeholder="Header value">
+                        <button type="button" class="btn btn-sm btn-outline-danger remove-row">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                $('#headersContainer').append(headerRow);
+            });
+
+            // Remove header/param row
+            $(document).on('click', '.remove-row', function() {
+                $(this).closest('.header-row, .param-row').remove();
+            });
+
+            // Handle form submission
+            $('#apiForm').submit(function(e) {
+                e.preventDefault();
+
+                // Show loading state
+                $('#sendRequest .normal-text').hide();
+                $('#sendRequest .loading-spinner').show();
+                $('#sendRequest').prop('disabled', true);
+                $('#copyResponse').prop('disabled', true);
+                $('#statusBadge').addClass('d-none');
+
+                // Collect headers
+                const headers = {};
+                $('.header-row').each(function() {
+                    const key = $(this).find('.header-key').val();
+                    const value = $(this).find('.header-value').val();
+                    if (key && value) {
+                        headers[key] = value;
+                    }
+                });
+
+                // Prepare request
+                const method = $('#httpMethod').val();
+                const url = $('#apiUrl').val();
+                let body = null;
+
+                if (method === 'POST' || method === 'PUT') {
+                    try {
+                        body = JSON.parse($('#requestBody').val() || '{}');
+                    } catch (e) {
+                        alert('Invalid JSON in request body');
+                        resetLoadingState();
+                        return;
+                    }
+                }
+
+                // Make API call
+                $.ajax({
+                    url: url,
+                    method: method,
+                    headers: headers,
+                    data: body ? JSON.stringify(body) : undefined,
+                    contentType: 'application/json',
+                    success: function(response, status, xhr) {
+                        displayResponse(response, xhr.status);
+                    },
+                    error: function(xhr) {
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            displayResponse(response, xhr.status);
+                        } catch (e) {
+                            displayResponse({ error: xhr.statusText }, xhr.status);
+                        }
+                    },
+                    complete: resetLoadingState
+                });
+            });
+
+            // Copy response
+            $('#copyResponse').click(function() {
+                const response = $('#jsonResponse').text();
+                navigator.clipboard.writeText(response).then(function() {
+                    const $btn = $('#copyResponse');
+                    $btn.html('<i class="fas fa-check"></i>');
+                    setTimeout(() => {
+                        $btn.html('<i class="fas fa-copy"></i>');
+                    }, 2000);
+                });
+            });
+
+            // Helper functions
+            function displayResponse(response, status) {
+                const formattedJson = JSON.stringify(response, null, 4);
+                $('#jsonResponse').text(formattedJson);
+                $('#copyResponse').prop('disabled', false);
+
+                // Show status badge
+                const $badge = $('#statusBadge');
+                $badge.removeClass('d-none status-2xx status-3xx status-4xx status-5xx');
+                $badge.text(`Status: ${status}`);
+
+                if (status >= 200 && status < 300) {
+                    $badge.addClass('status-2xx');
+                } else if (status >= 300 && status < 400) {
+                    $badge.addClass('status-3xx');
+                } else if (status >= 400 && status < 500) {
+                    $badge.addClass('status-4xx');
+                } else {
+                    $badge.addClass('status-5xx');
+                }
+            }
+
+            function resetLoadingState() {
+                $('#sendRequest .normal-text').show();
+                $('#sendRequest .loading-spinner').hide();
+                $('#sendRequest').prop('disabled', false);
+            }
+
+            // Initial setup
+            $('#httpMethod').trigger('change');
+        });
+    </script>
+</body>
+</html> 

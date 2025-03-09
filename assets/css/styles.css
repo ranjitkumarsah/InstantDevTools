@@ -43,6 +43,17 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.display-4 {
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.display-6 {
+    font-size: 2rem;
+    font-weight: 700;
 }
 
 .lead {
@@ -730,7 +741,7 @@ textarea.form-control {
     .g-recaptcha {
         transform-origin: left center;
         transform: scale(0.9);
-        margin-left: -14px;
+        
     }
 }
 
@@ -776,7 +787,7 @@ textarea.form-control {
 
     .g-recaptcha {
         transform: scale(0.85);
-        margin-left: -20px;
+        
     }
 
     #submitButton {
@@ -813,4 +824,119 @@ textarea.form-control {
 
 .navbar-toggler {
     background-color: #fff;
+}
+
+/* Responsive Typography */
+@media (max-width: 992px) {
+    .display-4 {
+        font-size: 2.25rem;
+    }
+    
+    .display-6 {
+        font-size: 1.75rem;
+    }
+    
+    .lead {
+        font-size: 1.15rem;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.75rem;
+    }
+    
+    .card-body {
+        padding: 1.75rem;
+    }
+    
+    h1 { font-size: 2.25rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.75rem; }
+    h4 { font-size: 1.5rem; }
+    h5 { font-size: 1.25rem; }
+    h6 { font-size: 1rem; }
+}
+
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .display-6 {
+        font-size: 1.5rem;
+    }
+    
+    .lead {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.25rem;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.25rem; }
+    h5 { font-size: 1.15rem; }
+    h6 { font-size: 1rem; }
+    
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .display-4 {
+        font-size: 1.75rem;
+    }
+    
+    .display-6 {
+        font-size: 1.35rem;
+    }
+    
+    .lead {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .hero-section h1 {
+        font-size: 1.75rem;
+    }
+    
+    .card-body {
+        padding: 1.25rem;
+    }
+    
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.35rem; }
+    h4 { font-size: 1.25rem; }
+    h5 { font-size: 1.1rem; }
+    h6 { font-size: 1rem; }
+    
+    .btn {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .form-control, .input-group-text {
+        font-size: 0.9rem;
+    }
+    
+    .card-text {
+        font-size: 0.9rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.15rem;
+    }
+    
+    section {
+        padding: 2rem 0;
+    }
 }
