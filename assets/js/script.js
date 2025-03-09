@@ -8,7 +8,7 @@ $(document).ready(function() {
         const href = $(this).attr('href');
         if (currentPath.includes('/tools/')) {
             // If we're in a tool page, highlight the Tools nav item
-            if (href === 'tools.html' || href === '../tools.html') {
+            if (href === 'tools/' || href === '../tools/') {
                 $('.navbar-nav .nav-link').removeClass('active');
                 $(this).addClass('active');
             }
