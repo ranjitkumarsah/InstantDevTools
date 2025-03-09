@@ -6,7 +6,7 @@ Allow: /about.html
 Allow: /contact.html
 
 # Sitemaps
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://ranjitkumarsah.github.io/InstantDevTools/sitemap.xml
 
 # Optimize crawling
 Crawl-delay: 1 
