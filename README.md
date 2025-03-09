@@ -1,58 +1,67 @@
 # InstantDevTools
 
-A collection of free online tools for developers, designers, and digital professionals. Built with modern web technologies and focused on simplicity and usability.
+A collection of free online developer tools to boost your productivity. All tools are client-side, ensuring your data stays private and secure.
 
 ## 🛠️ Available Tools
 
-- **Word Counter**: Count words, characters, sentences, and paragraphs in real-time
-- **QR Code Generator**: Create QR codes instantly for URLs and text
-- **Case Converter**: Transform text between different cases
-- **Image to Base64**: Convert images to Base64 encoded strings
+1. **Word Counter**
 
-## 🚀 Features
+   - Count words, characters, sentences, and paragraphs in real-time
+   - Perfect for content writers and students
+   - Features: Real-time counting, Privacy-focused, Mobile-friendly
 
-- ✨ Modern, responsive design
-- 🔒 Client-side processing for privacy
-- ⚡ Fast and lightweight
-- 📱 Mobile-friendly interface
-- 🌐 SEO optimized
+2. **Case Converter**
 
-## 🔧 Technologies Used
+   - Transform text between different cases instantly
+   - Supports: UPPERCASE, lowercase, Title Case, Sentence case
+   - Features: Instant conversion, Multiple formats, Copy to clipboard
 
-- HTML5
-- CSS3 (Bootstrap 5)
-- JavaScript (jQuery)
-- Font Awesome Icons
-- Modern Web APIs
+3. **QR Code Generator**
 
-## 📦 Installation
+   - Create QR codes for URLs, text, and more
+   - Customizable QR code generation
+   - Features: Instant generation, Easy download, Mobile-friendly
 
-1. Clone the repository:
+4. **Image to Base64**
 
-   ```bash
-   git clone https://github.com/ranjitkumarsah/instantdevtools.git
-   ```
+   - Convert images to Base64 encoded strings
+   - Support for JPG, PNG, GIF, SVG formats
+   - Features: Instant conversion, Secure processing, Size limit: 5MB
 
-2. Navigate to the project directory:
+5. **JSON Formatter**
 
-   ```bash
-   cd instantdevtools
-   ```
+   - Format and validate JSON data
+   - Features: Syntax highlighting, Error detection, Minification
+   - Copy formatted JSON with one click
 
-3. Open `index.html` in your browser or set up a local server.
+6. **API Tester**
+   - Test REST APIs with support for all HTTP methods
+   - Add custom headers and request body
+   - Features: Real-time response, Formatted JSON output, Status codes
 
-## 🌐 Live Demo
+## Features
 
-Visit [https://ranjitkumarsah.github.io/InstantDevTools](https://ranjitkumarsah.github.io/InstantDevTools)
+- 🚀 Fast and reliable
+- 🔒 Privacy-focused (client-side processing)
+- 📱 Mobile-friendly design
+- 💻 Modern user interface
+- ⚡ Real-time processing
+- 🆓 Completely free to use
 
-## 🤝 Contributing
+## Getting Started
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+1. Visit [InstantDevTools](https://ranjitkumarsah.github.io/InstantDevTools/)
+2. Choose the tool you need
+3. Start using it immediately - no installation or signup required
 
-## 📝 License
+## Contributing
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Contributions are welcome! Feel free to submit issues and pull requests.
 
-## 📧 Contact
+## License
 
-For any questions or suggestions, please reach out through the contact form on our website.
+This project is open source and available under the MIT License.
+
+## Contact
+
+For any queries or suggestions, please visit our [contact page](https://ranjitkumarsah.github.io/InstantDevTools/contact/).
